@@ -33,7 +33,9 @@ margin-right: 42%;
 `
 
 
-export const Hours = styled.div<IDataProps>`
+export const Hours = styled.div.attrs<IDataProps>(({ time }) => ({
+  transform: `rotateZ(${(time.hour % 12) * 30}deg)`,
+})) <IDataProps>`
   background-color: black;
   border-radius: 2.5px;
   height: 130px;
@@ -42,12 +44,13 @@ export const Hours = styled.div<IDataProps>`
   top: 35px;
   width: 5px;
   transform-origin: center calc(100% - 5px);
-  transform: rotateZ(${({ time }) => (time.hour % 12) * 30}deg);
+  
 
 `
 export const Minutes = styled(Hours)`
   height: 145px;
   top: 20px;
+  width: 3px;
 
   transform: rotateZ(${({ time }) => (time.minute * 60 + time.seconds) * 0.1}deg);
 `

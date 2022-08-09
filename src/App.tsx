@@ -11,6 +11,7 @@ import {
 	Semicircle,
 } from "./styled";
 import { IClockProps } from "./styled";
+import { Dropdown } from "./components/Dropdown";
 
 export const App = () => {
 	const [time, setTime] = useState<IClockProps>({
@@ -21,6 +22,8 @@ export const App = () => {
 
 	useEffect(() => {
 		const interval = setInterval(() => {
+			console.log(time);
+
 			if (time.hour >= 24) {
 				setTime({ ...time, hour: 1 });
 			}
@@ -61,6 +64,7 @@ export const App = () => {
 
 	return (
 		<AppContainer>
+			<Dropdown />
 			<Clock>
 				<Hours time={time} />
 				<Minutes time={time} />
